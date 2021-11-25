@@ -29,16 +29,30 @@ public class PaymentController {
 	private PaymentServiceImpl paymentService;
 
 	@GetMapping("getPaymentStatus")
-	public ResponseEntity<PaymentStatus> payBill(@RequestBody Payment payment) {
+	public ResponseEntity<PaymentStatus> payBill(@RequestBody Long paymentId) {
 		LOG.info("getPaymentById");
-		PaymentStatus payment1 = paymentService.payBill(payment); // line
+		PaymentStatus payment1 = paymentService.payBill(paymentId); // line
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("message", "This payBill is success.");
 		LOG.info(headers.toString());
 		ResponseEntity<PaymentStatus> response = new ResponseEntity<PaymentStatus>(payment1, headers, HttpStatus.OK);
 		return response;
 	}
-//
+
+	@GetMapping(path = "/readhistoricalpayment/{consumernumber}")
+	public ResponseEntity<List<Payment>> readHistoricalPayment(
+			@PathVariable(name = "consumernumber") Long consumerNumber)// throws NoSuchCustomerException
+	{
+		LOG.info("readHistoricalPayment");
+		List<Payment> list = paymentService.viewHistoricalPayment(consumerNumber);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", "FeedBack added to database");
+		ResponseEntity<List<Payment>> response = new ResponseEntity<>(list, headers, HttpStatus.CREATED);
+		return response;
+
+	}
+
+	//
 //	public ResponseEntity<Void> sendEmailOnPaymentCompletion(@RequestBody Long paymentId, String email) {
 //		LOG.info("sendEmailOnPaymentCompletion");
 //		long payment = paymentService.sendEmailOnPaymentCompletion(paymentId, email);
@@ -48,16 +62,4 @@ public class PaymentController {
 //		return response;
 //
 //	}
-
-	@GetMapping(path = "/readhistoricalpayment/{consumernumber}") 
-	public ResponseEntity<List<Payment>> readHistoricalPayment(@PathVariable(name = "consumernumber") Long consumerNumber)// throws NoSuchCustomerException
-	{
-		LOG.info("readHistoricalPayment");
-		List<Payment>  list = paymentService.viewHistoricalPayment(consumerNumber);
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("message", "FeedBack added to database");
-		ResponseEntity<List<Payment>> response = new ResponseEntity<>(list, headers, HttpStatus.CREATED);
-		return response;
-
-	}
 }

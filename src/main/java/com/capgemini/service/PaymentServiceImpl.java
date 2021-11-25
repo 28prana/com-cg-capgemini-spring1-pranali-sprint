@@ -23,9 +23,9 @@ public class PaymentServiceImpl implements IPaymentService {
 	PaymentRepository paymentRepo;
 	
 	@Override
-	public PaymentStatus payBill(Payment payment) {
+	public PaymentStatus payBill(Long paymentId) {
 		LOG.info("payBill");
-		Optional<Payment> paymentOpt = paymentRepo.findById(payment);
+		Optional<Payment> paymentOpt = paymentRepo.findById(paymentId);
 		if (paymentOpt.isPresent()) {
 			LOG.info(" Success");
 			return ((Payment) paymentRepo).getStatus();
@@ -35,11 +35,7 @@ public class PaymentServiceImpl implements IPaymentService {
 		return null;
 	}
 
-	@Override
-	public void sendEmailOnPaymentCompletion(Long paymentId, String email) {
-		// TODO Auto-generated method stub
-		
-	}
+//	
 
 	@Override
 	public List<Payment> viewHistoricalPayment(Long consumerNumber){
@@ -54,9 +50,21 @@ public class PaymentServiceImpl implements IPaymentService {
 		}
 	}
 
+	@Override
+	public void sendEmailOnPaymentCompletion(Long paymentId, String email) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
 
 
+
+//@Override
+//public void sendEmailOnPaymentCompletion(Long paymentId, String email) {
+//	// TODO Auto-generated method stub
+//	
+//}
 
 //
 //

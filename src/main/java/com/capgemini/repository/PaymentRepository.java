@@ -12,11 +12,11 @@ import com.capgemini.model.Payment;
 import com.capgemini.model.PaymentStatus;
 
 @Repository
-public interface PaymentRepository extends JpaRepository<Payment, Integer> {
+public interface PaymentRepository extends JpaRepository<Payment, Long> {
 
-	Optional<Payment> findById(Payment payment);
+//	Optional<Payment> findById(Payment payment);
 
-	Optional<Payment> exists(Long consumerNumber);
+//	Optional<Payment> exists(Long consumerNumber);
 	
 	@Query(name = "SELECT c FROM Customer c WHERE c.connection.consumerNumber = ?1")
 	public abstract List<Payment> findByConsumerNumber(Long consumerNumber);

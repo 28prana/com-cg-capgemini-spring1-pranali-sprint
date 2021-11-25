@@ -10,7 +10,7 @@ public class ComCgSpringmibiProjectApplication {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ComCgSpringmibiProjectApplication.class);
 	public static void main(String[] args) {
-		LOG.info("Start");
+		LOG.info("start");
 		SpringApplication.run(ComCgSpringmibiProjectApplication.class, args);
 		LOG.info("end");
 	}

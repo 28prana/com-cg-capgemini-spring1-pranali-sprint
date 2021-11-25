@@ -32,14 +32,14 @@ public class Payment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long paymentId;
 	
-	@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "billId")
 	private Bill billPayment;
 	
 	@Column
 	private LocalDate paymentDate;
 	
-	@Enumerated
+	@Column
 	private PaymentMode paymentMode;
 	
 	@Column
@@ -48,7 +48,7 @@ public class Payment {
 	@Column
 	private double totalPaid;
 	
-	@Enumerated
+	@Column
 	@Pattern(regexp = "^[S|F]{1}$", message ="Must be Success or Failed")
 	private PaymentStatus status;
 	

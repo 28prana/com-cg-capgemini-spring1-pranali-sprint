@@ -8,8 +8,9 @@ import com.capgemini.model.PaymentStatus;
 
 public interface IPaymentService {
 		
-	public PaymentStatus payBill(Payment payment);
+//	public PaymentStatus payBill(Payment payment);
 	public void sendEmailOnPaymentCompletion(Long paymentId, String email);
 	public List<Payment> viewHistoricalPayment(Long paymentId);
+	public PaymentStatus payBill(Long paymentId);
 	 
 }

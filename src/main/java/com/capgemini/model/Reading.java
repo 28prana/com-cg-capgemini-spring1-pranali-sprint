@@ -20,8 +20,9 @@ public class Reading {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long readingId;
 	
-	@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	@JoinColumn(name="reading",referencedColumnName="connectionId")
+//	@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+//	@JoinColumn(name="reading",referencedColumnName="connectionId")
+	@Column
 	private Connection readingForConnection;
 	
 	@Column

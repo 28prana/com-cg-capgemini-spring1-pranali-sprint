@@ -10,8 +10,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.ManyToAny;
+
 import com.capgemini.model.Reading;
 @Entity
 @Table(name = "bill_table")
@@ -27,8 +31,9 @@ public class Bill {
 	@Column
 	private LocalDate billDueDate;
 	
-	@OneToOne (fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+//	@ManyToOne 
 //	@JoinColumn(name= "readingId",referencedColumnName = "readingId")
+	@Column
 	private int unitsConsumed;
 	
 	@Column
